@@ -1,0 +1,45 @@
+* {
+    margin: 0px
+}
+header {
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+h1 {
+    color: white;
+}
+aside {
+    
+    width: 400px;
+}
+h3 {
+    
+    color: white;
+}
+.budgetValue {
+    color: white;
+}
+#budgetArea {
+    
+    display: flex;
+    justify-content: space-between;
+}
+.budgetSections {
+    display: flex;
+    flex-direction: column;
+    
+}
+.budgetValue {
+    
+    width: 100px;
+    border: solid white;
+    display: flex;
+    justify-content: center;
+}
+.budgetTitle {
+    display: flex;
+    justify-content: center;
+}
