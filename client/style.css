@@ -2,7 +2,6 @@
     margin: 0px
 }
 header {
-    background-color: black;
     display: flex;
     justify-content: space-around;
     padding-top: 10px;
@@ -30,16 +29,120 @@ h3 {
 .budgetSections {
     display: flex;
     flex-direction: column;
+
     
 }
 .budgetValue {
     
     width: 100px;
     border: solid white;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
 }
 .budgetTitle {
     display: flex;
     justify-content: center;
+}
+/* ------------------------------------------------------------------------------------------------ */
+body {
+    color: white;
+    background-color: black;
+    background-image: url("images/capstoneBackground.jpg");
+    background-size: cover;
+}
+main {
+    display: flex;
+    justify-content: space-around;
+
+}
+#inputSection {
+    height: 500px;
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+#setBudgetSection {
+    background-color: rgba(0, 0, 20, 0.5);
+    border: solid rgba(255, 255, 255, 0.17);
+    
+    border-radius: 10px;
+    height: 100px;
+    width: 35vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#setBudgetForm {
+    display: flex;
+    justify-content: space-around;
+}
+#planSection {
+    background-color: rgba(0, 0, 20, 0.5);
+    border: solid rgba(255, 255, 255, 0.17);
+    border-radius: 10px;
+    height: 350px;
+    width: 35vw;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+#planForm {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 290px;
+}
+
+input {
+    background-color: black;
+    border: solid white;
+    border-radius: 10px;
+    color: white
+}
+button {
+    background-color: black;
+    color: white;
+    border-color: white;
+    border-radius: 10px;
+    margin-left: 10px;
+    width: 100px;
+    height: 30px;
+}
+input {
+    height: 20px;
+}
+.inputDiv {
+    display: flex;
+    justify-content: flex-start;
+    width: 30vw;
+}
+#details {
+    width: 300px;
+    height: 100px;
+}
+label {
+    width: 50px;
+}
+#submitPlanBtn {
+    margin-left: 50px;
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+
+#displaySection {
+    border: solid red;
+    width: 35vw;
+
+    background-color: rgba(0, 0, 20, 0.5);
+    border: solid rgba(255, 255, 255, 0.17);
+    border-radius: 10px;
 }
