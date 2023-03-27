@@ -106,7 +106,8 @@ input {
     background-color: black;
     border: solid white;
     border-radius: 10px;
-    color: white
+    color: white;
+    height: 20px;
 }
 button {
     background-color: black;
@@ -117,9 +118,6 @@ button {
     width: 100px;
     height: 30px;
 }
-input {
-    height: 20px;
-}
 .inputDiv {
     display: flex;
     justify-content: flex-start;
@@ -128,6 +126,11 @@ input {
 #details {
     width: 300px;
     height: 100px;
+
+    background-color: black;
+    border: solid white;
+    border-radius: 10px;
+    color: white;
 }
 label {
     width: 50px;
@@ -144,5 +147,13 @@ label {
 
     background-color: rgba(0, 0, 20, 0.5);
     border: solid rgba(255, 255, 255, 0.17);
+    border-radius: 10px;
+}
+li {
+    border: solid white;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    height: 150px;
+    width: 30vw;
     border-radius: 10px;
 }
