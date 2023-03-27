@@ -1,0 +1,29 @@
+The plan is to make a travel planning website to be able to keep all your planned expenses and activities in one spot. The
+app is to create a form where you can add travel plans to list and then have the total cost of all the activities added
+together and subtracted from the total budget. The list of plans and budget is to be saved in a database for retrivial
+Using a post function. When the page loads the website will run a get function to pull data from the database to display 
+on the web page.
+
+
+MVP:
+	(Post) Add new Travel plans
+	(get) load travel plans from database on page load
+	(post) set budget
+Stretch goals:
+	(put) the ability to edit plans
+	(put) the ability to rearrange plans
+	(delete) the ability to delete plans
+
+Specific requirements and how I plan to achive them:
+	app has at least 5 semantic tags- 
+		<Header> for the top header of the web page
+		<aside> for the budget section of the header
+		<main> for the bottom section of the page that contains the 3 primary sections
+		<section> for the 3 main sections of the page (set budget, add plan, and display plans)
+		<ul> for the list of plans
+		<li> for each list item
+		<form> for the set budget function and the add plan function
+		<input> for each input of the forms
+		<button> the two submit buttons
+
+	
