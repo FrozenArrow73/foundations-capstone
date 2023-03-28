@@ -156,4 +156,13 @@ li {
     height: 150px;
     width: 30vw;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+p {
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    
 }
