@@ -3,8 +3,6 @@ let setBudgetInput = document.getElementById("setBudgetInput")
 let totalBudget = document.getElementById("totalBudget")
 let budgetRemaining = document.getElementById("budgetRemaining")
 
-
-
 function setbudget (event) {
     event.preventDefault()
     let budgetInput = setBudgetInput.value
@@ -12,6 +10,9 @@ function setbudget (event) {
     let body = {
         input: budgetInput
     }
+    axios.post("http://localhost:4000/setbudget", body).then((result) => {
+        //----------------------------------------------------------------------needs to be finished
+    }).catch((err) => console.log(err))
 
 }
 
