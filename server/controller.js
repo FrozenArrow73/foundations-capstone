@@ -33,5 +33,8 @@ module.exports = {
             return
         }
         console.log(req.body.input)
+    },
+    calculateBudget: (req, res) => {
+        console.log(req.body.budgetTotal)
     }
 }
