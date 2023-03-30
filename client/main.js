@@ -13,7 +13,7 @@ function setbudget (event) {
         let body = {
             input: budgetInput
         }
-        axios.post("http://localhost:4000/setbudget", body).then((result) => {
+        axios.post("/setbudget", body).then((result) => {
             let dbTotal = result.data[0].total_budget
             budgetTotal.innerHTML = dbTotal
             updateBudgetRemaining()
@@ -24,12 +24,14 @@ function setbudget (event) {
 }
 
 function updateBudgetRemaining() {
+    let total = budgetTotal.innerHTML
+    
     body = {
-        budgetTotal
+        total
     }
-    axios.post("http://localhost:4000/calculateBudget", body).then(
-        //------------------------------------------------------------------------needs to be completed
-    ).catch((err) => {console.log(err)})
+    axios.post("/calculateBudget", body).then((result) => {
+        budgetRemaining.innerHTML = result.data
+    }).catch((err) => {console.log(err)})
 }
 
 setBudgetForm.addEventListener("submit", setbudget)

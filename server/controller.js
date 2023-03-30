@@ -34,7 +34,32 @@ module.exports = {
         }
         console.log(req.body.input)
     },
+    
+    
     calculateBudget: (req, res) => {
-        console.log(req.body.budgetTotal)
+        let reqTotal = req.body.total
+        sequelize.query(`
+            SELECT  budget_remaining
+            FROM budgets
+            WHERE budget_id = 1;
+        `).then((dbRes) => {
+            let dbRemaining = dbRes[0][0].budget_remaining
+            sequelize.query(`
+                SELECT cost
+                FROM plans;
+            `).then((dbRes2) => {
+                costArr = dbRes2[0]
+                console.log(costArr)
+                if(costArr.length === 0) {
+                    res.status(200).send(reqTotal)
+                }
+                let totalCost = 0
+                costArr.forEach(element => {
+                    totalCost += element
+                })
+                let totalRemaining = reqTotal - totalCost
+                res.status(200).send(totalRemaining)
+            })
+        })
     }
 }
