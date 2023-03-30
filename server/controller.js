@@ -49,17 +49,35 @@ module.exports = {
                 FROM plans;
             `).then((dbRes2) => {
                 costArr = dbRes2[0]
-                console.log(costArr)
                 if(costArr.length === 0) {
+                    sequelize.query(`
+                    UPDATE budgets 
+                    SET budget_remaining = ${reqTotal}
+                    WHERE budget_id = 1;
+                    `)
                     res.status(200).send(reqTotal)
                 }
                 let totalCost = 0
                 costArr.forEach(element => {
-                    totalCost += element
+                    totalCost += element.cost
                 })
                 let totalRemaining = reqTotal - totalCost
+                sequelize.query(`
+                    UPDATE budgets 
+                    SET budget_remaining = ${totalRemaining}
+                    WHERE budget_id = 1;
+                `)
+                totalRemaining = "" + totalRemaining
                 res.status(200).send(totalRemaining)
             })
         })
+    },
+
+    addPlan: (req, res) => {
+        const {name, cost, details} = req.body
+        sequelize.query(`
+            INSERT INTO plans (title, cost, details)
+            VALUES ('${name}', ${cost}, '${details}')
+        `)
     }
 }

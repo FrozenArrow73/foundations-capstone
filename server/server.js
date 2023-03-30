@@ -5,11 +5,12 @@ app.use(express.json())
 
 app.use(express.static(`${__dirname}/../client`))
 
-const {setBudget, calculateBudget} = require("./controller.js")
+const {setBudget, calculateBudget, addPlan} = require("./controller.js")
 const {SERVER_PORT, CONNECTION_STRING} = process.env
 
-app.post("/setBudget", setBudget)
-app.post("/calculateBudget", calculateBudget)
+app.put("/setBudget", setBudget)
+app.put("/calculateBudget", calculateBudget)
+app.post("/addPlan", addPlan)
 
 
 
