@@ -83,6 +83,32 @@ module.exports = {
     },
 
     refresh: (req, res) => {
-        console.log("I ran")
+        sequelize.query(`
+            SELECT  * 
+            FROM budgets
+        `).then((dbRes) => {
+            console.log(dbRes[0][0])
+            let budgetTotal = dbRes[0][0].total_budget
+            let budgetRemaining = dbRes[0][0].budget_remaining
+            sequelize.query(`
+                SELECT *
+                FROM plans
+            `).then((dbRes2) => {
+                if(dbRes2[0].length === 0) {
+                    let body = {
+                        budgetTotal,
+                        budgetRemaining
+                    }
+                    res.status(200).send(body)
+                }else{
+                    let body = {
+                        budgetTotal,
+                        budgetRemaining,
+                        plans: dbRes2[0]
+                    }
+                    res.status(200).send(body)
+                }
+            })
+        })
     }
 }

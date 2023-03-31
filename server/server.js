@@ -11,7 +11,7 @@ const {SERVER_PORT, CONNECTION_STRING} = process.env
 app.put("/setBudget", setBudget)
 app.put("/calculateBudget", calculateBudget)
 app.post("/addPlan", addPlan)
-app.get("/refersh", refresh)
+app.get("/refresh", refresh)
 
 
 

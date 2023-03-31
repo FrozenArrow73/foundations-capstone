@@ -6,6 +6,7 @@ let planName = document.getElementById("name")
 let planCost = document.getElementById("cost")
 let planDetails = document.getElementById("details")
 let planForm = document.getElementById("planForm")
+let list = document.querySelector("ul")
 
 
 function setbudget (event) {
@@ -61,8 +62,39 @@ function refreshPage () {
     //write a function that updates all the information on the page
     axios.get("/refresh").then((result) => {
         //take data from result.data and update the page
+        if(result.data.plans === undefined) {
+            budgetTotal.innerHTML = result.data.budgetTotal
+            budgetRemaining.innerHTML = result.data.budgetRemaining
+            list.innerHTML = ""
+        } else {
+            //make the rest of the function
+            
+            budgetTotal.innerHTML = result.data.budgetTotal
+            budgetRemaining.innerHTML = result.data.budgetRemaining
+            list.innerHTML = ""
+            result.data.plans.forEach(plan => {
+                li = document.createElement("li")
+                pName = document.createElement("p")
+                pCost = document.createElement("p")
+                pDetails = document.createElement("p")
+
+                pName.innerHTML = plan.title
+                pCost.innerHTML = plan.cost
+                pDetails.innerHTML = plan.details
+
+                li.appendChild(pName)
+                li.appendChild(pCost)
+                li.appendChild(pDetails)
+
+                list.appendChild(li)
+                
+            });
+
+            
+        }
     }).catch((err) => {
         console.log(err)
+
     })
 }
 
