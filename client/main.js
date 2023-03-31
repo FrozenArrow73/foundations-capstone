@@ -54,11 +54,16 @@ function addPlan (event) {
 
     axios.post("/addPlan", body).then((result) => {
         refreshPage()
-    })
+    }).catch((err) => {console.log(err)})
 }
 
 function refreshPage () {
     //write a function that updates all the information on the page
+    axios.get("/refresh").then((result) => {
+        //take data from result.data and update the page
+    }).catch((err) => {
+        console.log(err)
+    })
 }
 
 refreshPage()

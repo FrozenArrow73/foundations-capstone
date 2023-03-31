@@ -56,6 +56,7 @@ module.exports = {
                     WHERE budget_id = 1;
                     `)
                     res.status(200).send(reqTotal)
+                    return
                 }
                 let totalCost = 0
                 costArr.forEach(element => {
@@ -79,5 +80,9 @@ module.exports = {
             INSERT INTO plans (title, cost, details)
             VALUES ('${name}', ${cost}, '${details}')
         `)
+    },
+
+    refresh: (req, res) => {
+        console.log("I ran")
     }
 }
