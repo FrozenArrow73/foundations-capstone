@@ -199,8 +199,8 @@ p {
     width: 325px;
     display: flex;
     justify-content: center;
-    margin-left: 1.5vw;
-    margin-right: 1.5vw;
+    margin-left: 10px;
+    margin-right: 10px;
     
     
 }
