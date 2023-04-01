@@ -30,13 +30,8 @@ function setbudget (event) {
 }
 
 function updateBudgetRemaining() {
-    let total = budgetTotal.innerHTML
-    
-    body = {
-        total
-    }
-    axios.put("/calculateBudget", body).then((result) => {
-        budgetRemaining.innerHTML = result.data
+    axios.get("/calculateBudget").then((result) => {
+        refreshPage()
     }).catch((err) => {console.log(err)})
 }
 
@@ -61,13 +56,13 @@ function addPlan (event) {
 function refreshPage () {
     //write a function that updates all the information on the page
     axios.get("/refresh").then((result) => {
-        //take data from result.data and update the page
+        //if there are no costs then update only the budget total and remaining
         if(result.data.plans === undefined) {
             budgetTotal.innerHTML = result.data.budgetTotal
             budgetRemaining.innerHTML = result.data.budgetRemaining
             list.innerHTML = ""
         } else {
-            //make the rest of the function
+            //if there are costs then update the whole page
             
             budgetTotal.innerHTML = result.data.budgetTotal
             budgetRemaining.innerHTML = result.data.budgetRemaining

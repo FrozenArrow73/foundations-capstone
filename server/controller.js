@@ -24,7 +24,6 @@ module.exports = {
                 FROM budgets
                 WHERE budget_id = 1;
                 `).then((dbRes) => {
-                    console.log(dbRes[0])
                     res.status(200).send(dbRes[0])
                 })
             })
@@ -37,13 +36,12 @@ module.exports = {
     
     
     calculateBudget: (req, res) => {
-        let reqTotal = req.body.total
         sequelize.query(`
-            SELECT  budget_remaining
+            SELECT  total_budget
             FROM budgets
             WHERE budget_id = 1;
         `).then((dbRes) => {
-            let dbRemaining = dbRes[0][0].budget_remaining
+            let dbTotal = dbRes[0][0].total_budget
             sequelize.query(`
                 SELECT cost
                 FROM plans;
@@ -52,24 +50,23 @@ module.exports = {
                 if(costArr.length === 0) {
                     sequelize.query(`
                     UPDATE budgets 
-                    SET budget_remaining = ${reqTotal}
+                    SET budget_remaining = ${dbTotal}
                     WHERE budget_id = 1;
                     `)
-                    res.status(200).send(reqTotal)
+                    res.sendStatus(200)
                     return
                 }
                 let totalCost = 0
                 costArr.forEach(element => {
                     totalCost += element.cost
                 })
-                let totalRemaining = reqTotal - totalCost
+                let totalRemaining = dbTotal - totalCost
                 sequelize.query(`
                     UPDATE budgets 
                     SET budget_remaining = ${totalRemaining}
                     WHERE budget_id = 1;
                 `)
-                totalRemaining = "" + totalRemaining
-                res.status(200).send(totalRemaining)
+                res.sendStatus(200)
             })
         })
     },
