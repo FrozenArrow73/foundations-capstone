@@ -24,7 +24,7 @@ function setbudget (event) {
             budgetTotal.innerHTML = dbTotal
             updateBudgetRemaining()
 
-        }).catch((err) => console.log(err))
+        }).catch((err) => {console.log(err)})
     }
     
 }
@@ -103,10 +103,16 @@ function refreshPage () {
 }
 
 function deleteItem (event) {
-    console.log(event)
     let deleteBtn = event.srcElement
-    let plan_id = deleteBtn.getAttribute("plan_id")
+    let planId = deleteBtn.getAttribute("plan_id")
     deleteBtn.parentNode.remove()
+
+    
+    axios.delete(`/deletePlan/${planId}`).then((result) => {
+        updateBudgetRemaining()
+    }).catch((err) => {
+        console.log(err)
+    })
 }
 
 refreshPage()

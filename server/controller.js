@@ -75,7 +75,7 @@ module.exports = {
         const {name, cost, details} = req.body
         sequelize.query(`
             INSERT INTO plans (title, cost, details)
-            VALUES ('${name}', ${cost}, '${details}')
+            VALUES ('${name}', ${cost}, '${details}');
         `).then((dbRes) => {
             res.sendStatus(200)
         })
@@ -84,14 +84,14 @@ module.exports = {
     refresh: (req, res) => {
         sequelize.query(`
             SELECT  * 
-            FROM budgets
+            FROM budgets;
         `).then((dbRes) => {
             console.log(dbRes[0][0])
             let budgetTotal = dbRes[0][0].total_budget
             let budgetRemaining = dbRes[0][0].budget_remaining
             sequelize.query(`
                 SELECT *
-                FROM plans
+                FROM plans;
             `).then((dbRes2) => {
                 if(dbRes2[0].length === 0) {
                     let body = {
@@ -109,5 +109,19 @@ module.exports = {
                 }
             })
         })
+    },
+
+    deletePlan: (req, res) => {
+        console.log(req.params.id)
+        sequelize.query(`
+        DELETE
+        FROM plans
+        WHERE plan_id = ${+req.params.id};
+        `).then((dbRes) => {
+            res.sendStatus(200)
+        }).catch((err) => {
+            console.log(err)
+        })
+
     }
 }
