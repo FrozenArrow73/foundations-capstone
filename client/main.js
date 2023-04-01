@@ -41,6 +41,9 @@ function addPlan (event) {
     let name = planName.value
     let cost = planCost.value
     let details = planDetails.value
+    planName.value = ""
+    planCost.value = ""
+    planDetails.value = ""
 
     body = {
         name,
@@ -49,7 +52,8 @@ function addPlan (event) {
     }
 
     axios.post("/addPlan", body).then((result) => {
-        refreshPage()
+        console.log("i ran")  
+        updateBudgetRemaining()
     }).catch((err) => {console.log(err)})
 }
 

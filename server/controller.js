@@ -76,7 +76,9 @@ module.exports = {
         sequelize.query(`
             INSERT INTO plans (title, cost, details)
             VALUES ('${name}', ${cost}, '${details}')
-        `)
+        `).then((dbRes) => {
+            res.sendStatus(200)
+        })
     },
 
     refresh: (req, res) => {
