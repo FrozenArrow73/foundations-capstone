@@ -71,10 +71,15 @@ function refreshPage () {
             budgetRemaining.innerHTML = result.data.budgetRemaining
             list.innerHTML = ""
             result.data.plans.forEach(plan => {
-                li = document.createElement("li")
-                pName = document.createElement("p")
-                pCost = document.createElement("p")
-                pDetails = document.createElement("p")
+                let li = document.createElement("li")
+                let pName = document.createElement("p")
+                let pCost = document.createElement("p")
+                let pDetails = document.createElement("p")
+                let deleteBtn = document.createElement("button")
+                deleteBtn.setAttribute("plan_id", plan.plan_id)
+                deleteBtn.innerHTML = "Delete"
+                deleteBtn.addEventListener("click", deleteItem)
+                
 
                 pName.innerHTML = plan.title
                 pCost.innerHTML = plan.cost
@@ -83,6 +88,7 @@ function refreshPage () {
                 li.appendChild(pName)
                 li.appendChild(pCost)
                 li.appendChild(pDetails)
+                li.appendChild(deleteBtn)
 
                 list.appendChild(li)
                 
@@ -96,6 +102,14 @@ function refreshPage () {
     })
 }
 
+function deleteItem (event) {
+    console.log(event)
+    let deleteBtn = event.srcElement
+    let plan_id = deleteBtn.getAttribute("plan_id")
+    deleteBtn.parentNode.remove()
+}
+
 refreshPage()
 setBudgetForm.addEventListener("submit", setbudget)
 planForm.addEventListener("submit", addPlan)
+
