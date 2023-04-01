@@ -51,8 +51,7 @@ function addPlan (event) {
         details
     }
 
-    axios.post("/addPlan", body).then((result) => {
-        console.log("i ran")  
+    axios.post("/addPlan", body).then((result) => {  
         updateBudgetRemaining()
     }).catch((err) => {console.log(err)})
 }
