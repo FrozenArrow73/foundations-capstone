@@ -58,7 +58,7 @@ main {
 }
 #inputSection {
     height: 500px;
-    width: 35vw;
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -71,7 +71,7 @@ main {
     
     border-radius: 10px;
     height: 100px;
-    width: 35vw;
+    width: 450px;
 
     display: flex;
     flex-direction: column;
@@ -100,7 +100,7 @@ h2 {
     border: solid rgba(255, 255, 255, 0.17);
     border-radius: 10px;
     height: 350px;
-    width: 35vw;
+    width: 450px;
     
     display: flex;
     flex-direction: column;
@@ -135,7 +135,7 @@ button {
 .inputDiv {
     display: flex;
     justify-content: flex-start;
-    width: 30vw;
+    width: 400px;
 }
 #details {
     width: 300px;
@@ -157,29 +157,60 @@ label {
 
 #displaySection {
     border: solid red;
-    width: 35vw;
+    width: 450px;
 
     background-color: rgba(0, 0, 20, 0.5);
     border: solid rgba(255, 255, 255, 0.17);
     border-radius: 10px;
 }
+ul::-webkit-scrollbar {
+ width: 20px;
+}
+ul::-webkit-scrollbar-track {
+    background: rgba(0, 0, 20, 0);
+}
+ul::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 20, 0);
+    border: solid white;
+    border-radius: 10px;
+    
+}
+
+ul {
+    width: 410px;
+    height: 490px;
+    overflow-y: scroll;
+}
 li {
     border: solid white;
     margin-bottom: 10px;
     margin-top: 10px;
-    height: 150px;
-    width: 30vw;
+    height: 175px;
+    width: 365px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 p {
-    width: 27vw;
+    width: 325px;
     display: flex;
     justify-content: center;
     margin-left: 1.5vw;
     margin-right: 1.5vw;
     
+    
+}
+
+/* --------------------- mobile settings -------------------------------------------*/
+
+@media only screen and (max-width: 920px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+    #inputSection {
+        margin-bottom: 30px;
+    }
     
 }
