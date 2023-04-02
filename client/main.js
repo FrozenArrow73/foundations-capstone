@@ -49,16 +49,19 @@ function addPlan (event) {
     planName.value = ""
     planCost.value = ""
     planDetails.value = ""
+    if (name === "" || cost === "" || details === "") {
+        alert("all inputs are required")
+    } else {
+        body = {
+            name,
+            cost,
+            details
+        }
 
-    body = {
-        name,
-        cost,
-        details
+        axios.post("/addPlan", body).then((result) => {  
+            updateBudgetRemaining()
+        }).catch((err) => {console.log(err)})
     }
-
-    axios.post("/addPlan", body).then((result) => {  
-        updateBudgetRemaining()
-    }).catch((err) => {console.log(err)})
 }
 
 function refreshPage () {
