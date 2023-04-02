@@ -7,6 +7,7 @@ let planCost = document.getElementById("cost")
 let planDetails = document.getElementById("details")
 let planForm = document.getElementById("planForm")
 let list = document.querySelector("ul")
+let modal = document.querySelector("dialog")
 
 
 function setbudget (event) {
@@ -76,19 +77,32 @@ function refreshPage () {
                 let pCost = document.createElement("p")
                 let pDetails = document.createElement("p")
                 let deleteBtn = document.createElement("button")
+                let editBtn = document.createElement("button")
+                let pSection = document.createElement("section")
+                let btnSecton = document.createElement("section")
+
+                pSection.classList.add("pSection")
+                btnSecton.classList.add("btnSection")
+
                 deleteBtn.setAttribute("plan_id", plan.plan_id)
                 deleteBtn.innerHTML = "Delete"
                 deleteBtn.addEventListener("click", deleteItem)
+
+                editBtn.innerHTML = "Edit"
                 
 
                 pName.innerHTML = plan.title
                 pCost.innerHTML = plan.cost
                 pDetails.innerHTML = plan.details
 
-                li.appendChild(pName)
-                li.appendChild(pCost)
-                li.appendChild(pDetails)
-                li.appendChild(deleteBtn)
+                pSection.appendChild(pName)
+                pSection.appendChild(pCost)
+                pSection.appendChild(pDetails)
+                btnSecton.appendChild(deleteBtn)
+                btnSecton.appendChild(editBtn)
+
+                li.appendChild(pSection)
+                li.appendChild(btnSecton)
 
                 list.appendChild(li)
                 
@@ -114,6 +128,10 @@ function deleteItem (event) {
         console.log(err)
     })
 }
+let showDialog = document.querySelector("#show")
+showDialog.addEventListener("click", (event) => {
+    modal.show()
+})
 
 refreshPage()
 setBudgetForm.addEventListener("submit", setbudget)

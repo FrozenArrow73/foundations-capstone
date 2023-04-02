@@ -67,6 +67,26 @@
             <ul></ul>
         </section>
     </main>
+    <dialog>
+        <h2 id="editPlan">Edit Plan</h2>
+        <form id="modalForm" method="dialog">
+            <div class = inputDiv>
+                <label for="name">Name</label>
+                <input type="text" id="modalName" maxlength="20">
+            </div>
+            <div class = inputDiv>
+                <label for="cost">Cost</label>
+                <input type="text" id="modalCost" maxlength="20">
+            </div>
+            <div class = inputDiv>
+                <label for="details">Details</label>
+                <textarea name="text" id="modalDetails" cols="30" rows="10" maxlength="200"></textarea>
+            </div>
+            <button id="modalSubmit">Submit</button>
+        </form>
+        
+    </dialog>
+    <button id="show">Show Dialog</button>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
 </body>
