@@ -243,9 +243,11 @@ dialog {
     
     background-color: rgba(0, 0, 20, 0.5);
     border: solid rgba(255, 255, 255, 0.17);
-    backdrop-filter: blur(4px);
     border-radius: 10px;
     
+}
+dialog::backdrop {
+    backdrop-filter: blur(4px);
 }
 #editPlan {
     margin-left: auto;

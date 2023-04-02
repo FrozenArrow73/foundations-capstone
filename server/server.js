@@ -5,7 +5,7 @@ app.use(express.json())
 
 app.use(express.static(`${__dirname}/../client`))
 
-const {setBudget, calculateBudget, addPlan, refresh, deletePlan} = require("./controller.js")
+const {setBudget, calculateBudget, addPlan, refresh, deletePlan, editPlan} = require("./controller.js")
 const {SERVER_PORT, CONNECTION_STRING} = process.env
 
 app.put("/setBudget", setBudget)
@@ -13,6 +13,7 @@ app.get("/calculateBudget", calculateBudget)
 app.post("/addPlan", addPlan)
 app.get("/refresh", refresh)
 app.delete("/deletePlan/:id", deletePlan)
+app.put("/editPlan", editPlan)
 
 
 

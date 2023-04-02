@@ -8,6 +8,10 @@ let planDetails = document.getElementById("details")
 let planForm = document.getElementById("planForm")
 let list = document.querySelector("ul")
 let modal = document.querySelector("dialog")
+let modalSubmit = document.getElementById("modalSubmit")
+let modalName = document.getElementById("modalName")
+let modalCost = document.getElementById("modalCost")
+let modalDetails = document.getElementById("modalDetails")
 
 
 function setbudget (event) {
@@ -89,6 +93,8 @@ function refreshPage () {
                 deleteBtn.addEventListener("click", deleteItem)
 
                 editBtn.innerHTML = "Edit"
+                editBtn.setAttribute("plan_id", plan.plan_id)
+                editBtn.addEventListener("click", openModal)
                 
 
                 pName.innerHTML = plan.title
@@ -128,12 +134,46 @@ function deleteItem (event) {
         console.log(err)
     })
 }
-let showDialog = document.querySelector("#show")
-showDialog.addEventListener("click", (event) => {
-    modal.show()
-})
+
+function openModal (event) {
+    let editBtn = event.srcElement
+    let planId = editBtn.getAttribute("plan_id")
+
+    axios.get("/refresh").then((result) => {
+        result.data.plans.forEach((plan)=>{
+            if(plan.plan_id === +planId) {
+                modalName.value = plan.title
+                modalCost.value = plan.cost
+                modalDetails.value = plan.details
+                modalSubmit.setAttribute("plan_id", planId)
+
+                modal.showModal()
+
+            }
+        })
+    }).catch((err) => {console.log(err)})
+}
+
+function editPlan (event) {
+    console.log("I ran")
+    let submitBtn = event.srcElement
+    let name = modalName.value
+    let cost = modalCost.value
+    let details = modalDetails.value
+    let id = modalSubmit.getAttribute("plan_id")
+    body = {
+        id,
+        name,
+        cost,
+        details
+    }
+    axios.put("/editPlan", body).then((result) => {
+        refreshPage()
+    }).catch((err)=> {console.log(err)})
+}
 
 refreshPage()
 setBudgetForm.addEventListener("submit", setbudget)
 planForm.addEventListener("submit", addPlan)
+modal.addEventListener("submit", editPlan)
 

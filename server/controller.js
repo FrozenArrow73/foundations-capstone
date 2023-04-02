@@ -123,5 +123,21 @@ module.exports = {
             console.log(err)
         })
 
+    },
+
+    editPlan: (req, res) => {
+        const {id, name, cost, details} = req.body
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        console.log(req.body)
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        sequelize.query(`
+            UPDATE plans
+            SET title = '${name}', cost = ${+cost}, details = '${details}'
+            WHERE plan_id = ${+id}
+        `).then((dbRes) => {
+            res.sendStatus(200)
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 }
