@@ -13,10 +13,11 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 
 module.exports = {
     setBudget: (req, res) => {
-        if(!isNaN(req.body.input)) {
+        let input = +req.body.input
+        if(!isNaN(input)) {
             sequelize.query(`
             UPDATE budgets 
-            SET total_budget = ${req.body.input}
+            SET total_budget = ${input}
             WHERE budget_id = 1;
             `).then(() => {
                 sequelize.query(`
@@ -31,7 +32,6 @@ module.exports = {
             res.sendStatus(400)
             return
         }
-        console.log(req.body.input)
     },
     
     
@@ -91,7 +91,8 @@ module.exports = {
             let budgetRemaining = dbRes[0][0].budget_remaining
             sequelize.query(`
                 SELECT *
-                FROM plans;
+                FROM plans
+                ORDER BY cost DESC;
             `).then((dbRes2) => {
                 if(dbRes2[0].length === 0) {
                     let body = {
@@ -127,9 +128,6 @@ module.exports = {
 
     editPlan: (req, res) => {
         const {id, name, cost, details} = req.body
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        console.log(req.body)
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         sequelize.query(`
             UPDATE plans
             SET title = '${name}', cost = ${+cost}, details = '${details}'
