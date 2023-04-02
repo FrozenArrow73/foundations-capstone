@@ -50,7 +50,7 @@ function addPlan (event) {
     planCost.value = ""
     planDetails.value = ""
     if (name === "" || cost === "" || details === "") {
-        alert("all inputs are required")
+        alert("all inputs are required.")
     } else {
         body = {
             name,
@@ -163,16 +163,21 @@ function editPlan (event) {
     let name = modalName.value
     let cost = modalCost.value
     let details = modalDetails.value
-    let id = modalSubmit.getAttribute("plan_id")
-    body = {
-        id,
-        name,
-        cost,
-        details
+
+    if(name = "" || cost === "" || details === "") {
+        alert("All inputs are required.")
+    }else {
+        let id = modalSubmit.getAttribute("plan_id")
+        body = {
+            id,
+            name,
+            cost,
+            details
+        }
+        axios.put("/editPlan", body).then((result) => {
+            updateBudgetRemaining()
+        }).catch((err)=> {console.log(err)})
     }
-    axios.put("/editPlan", body).then((result) => {
-        updateBudgetRemaining()
-    }).catch((err)=> {console.log(err)})
 }
 
 refreshPage()
