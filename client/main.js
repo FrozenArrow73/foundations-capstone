@@ -168,7 +168,7 @@ function editPlan (event) {
         details
     }
     axios.put("/editPlan", body).then((result) => {
-        refreshPage()
+        updateBudgetRemaining()
     }).catch((err)=> {console.log(err)})
 }
 
