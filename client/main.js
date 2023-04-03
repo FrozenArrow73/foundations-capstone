@@ -12,6 +12,7 @@ let modalSubmit = document.getElementById("modalSubmit")
 let modalName = document.getElementById("modalName")
 let modalCost = document.getElementById("modalCost")
 let modalDetails = document.getElementById("modalDetails")
+let modalClose = document.getElementById("modalClose")
 
 
 function setbudget (event) {
@@ -165,6 +166,7 @@ function editPlan (event) {
     let details = modalDetails.value
 
     if(name === "" || cost === "" || details === "") {
+        event.preventDefault()
         alert("All inputs are required.")
     }else {
         let id = modalSubmit.getAttribute("plan_id")
@@ -180,8 +182,14 @@ function editPlan (event) {
     }
 }
 
+function close () {
+    modal.close()
+}
+
+
 refreshPage()
 setBudgetForm.addEventListener("submit", setbudget)
 planForm.addEventListener("submit", addPlan)
 modal.addEventListener("submit", editPlan)
+modalClose.addEventListener("click", close)
 
