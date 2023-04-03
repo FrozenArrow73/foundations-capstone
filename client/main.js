@@ -47,12 +47,14 @@ function addPlan (event) {
     let name = planName.value
     let cost = planCost.value
     let details = planDetails.value
-    planName.value = ""
-    planCost.value = ""
-    planDetails.value = ""
     if (name === "" || cost === "" || details === "") {
         alert("all inputs are required.")
+    } else if (isNaN(+cost)) {
+        alert("Cost must be a number.")
     } else {
+        planName.value = ""
+        planCost.value = ""
+        planDetails.value = ""
         body = {
             name,
             cost,
@@ -170,7 +172,7 @@ function editPlan (event) {
         alert("All inputs are required.")
     }else if (isNaN(+cost)) {
         event.preventDefault()
-        alert("Cost must be a number")
+        alert("Cost must be a number.")
     } else {
         let id = modalSubmit.getAttribute("plan_id")
         body = {
