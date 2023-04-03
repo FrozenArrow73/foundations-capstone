@@ -164,7 +164,7 @@ function editPlan (event) {
     let cost = modalCost.value
     let details = modalDetails.value
 
-    if(name = "" || cost === "" || details === "") {
+    if(name === "" || cost === "" || details === "") {
         alert("All inputs are required.")
     }else {
         let id = modalSubmit.getAttribute("plan_id")
