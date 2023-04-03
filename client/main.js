@@ -168,7 +168,10 @@ function editPlan (event) {
     if(name === "" || cost === "" || details === "") {
         event.preventDefault()
         alert("All inputs are required.")
-    }else {
+    }else if (isNaN(+cost)) {
+        event.preventDefault()
+        alert("Cost must be a number")
+    } else {
         let id = modalSubmit.getAttribute("plan_id")
         body = {
             id,
